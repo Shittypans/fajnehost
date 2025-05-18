@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAJNEHOSTING – Minecraft Server Hosting</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:900,700,400&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="https://static.wikia.nocookie.net/minecraft_gamepedia/images/c/c0/Make_Stuff_icon_%28MCE%29.png/revision/latest/scale-to-width-down/100?cb=20240727094804">
+    <style>
+        :root {
+            --gold: #ffd700;
+            --purple: #3a1c71;
+            --dark: #1e1e2f;
+            --accent: #2a0845;
+            --white: #fff;
+            --glass: rgba(255,255,255,0.12);
+        }
+        html, body {
+            height: 100%;
+        }
+        body {
+            font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--purple) 60%, var(--gold) 100%);
+            color: var(--white);
+            overflow-x: hidden;
+        }
+        header {
+            background: linear-gradient(90deg, var(--gold) 0%, var(--purple) 100%);
+            color: var(--dark);
+            padding: 2.5rem 0 2rem 0;
+            text-align: center;
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: 8px;
+            text-shadow: 0 0 32px var(--gold), 0 0 8px #fff;
+            border-bottom: 6px solid var(--gold);
+            box-shadow: 0 8px 32px rgba(255,215,0,0.18);
+            position: relative;
+            z-index: 10;
+        }
+        header .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.2rem;
+        }
+        header img {
+            width: 64px;
+            height: 64px;
+            filter: drop-shadow(0 0 12px var(--gold));
+        }
+        nav {
+            background: linear-gradient(90deg, var(--accent), var(--purple) 80%);
+            padding: 1.2rem 0;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+            position: sticky;
+            top: 0;
+            z-index: 9;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+        }
+        nav ul li a {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.25rem;
+            text-shadow: 0 0 8px #fff700, 0 0 2px #fff;
+            padding: 0.5rem 1.5rem;
+            border-radius: 8px;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        }
+        nav ul li a:hover, nav ul li a.active {
+            background: var(--gold);
+            color: var(--accent);
+            box-shadow: 0 2px 12px var(--gold);
+        }
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 3rem;
+            padding: 4rem 2rem 2rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .hero-text {
+            flex: 1 1 350px;
+            min-width: 320px;
+        }
+        .hero-text h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 16px var(--gold), 0 0 2px #fff;
+        }
+        .hero-text p {
+            font-size: 1.3rem;
+            color: #e0e0e0;
+            margin-bottom: 2rem;
+        }
+        .hero-text .cta {
+            background: linear-gradient(90deg, var(--gold), var(--purple));
+            color: var(--dark);
+            font-weight: 900;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 16px;
+            padding: 1rem 2.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 24px var(--gold);
+            transition: background 0.2s, transform 0.2s;
+        }
+        .hero-text .cta:hover {
+            background: linear-gradient(90deg, var(--purple), var(--gold));
+            color: var(--white);
+            transform: scale(1.07);
+        }
+        .hero-img {
+            flex: 1 1 320px;
+            min-width: 260px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero-img img {
+            width: 320px;
+            max-width: 100%;
+            border-radius: 24px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.45), 0 0 32px var(--gold);
+            background: var(--white);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2.5rem auto;
+            padding: 2.5rem 2rem;
+            background: var(--glass);
+            border-radius: 24px;
+            backdrop-filter: blur(18px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+        }
+        .why-us {
+            margin-top: 2rem;
+            text-align: center;
+        }
+        .why-us-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 2.5rem;
+        }
+        .why-us-image {
+            flex: 1 1 220px;
+            max-width: 220px;
+            border: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+            mix-blend-mode: multiply;
+        }
+        .why-us-image:hover {
+            transform: scale(1.07);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+        }
+        .why-us-text {
+            flex: 1 1 400px;
+            color: #e0e0e0;
+            font-size: 1.25rem;
+            line-height: 1.8;
+            text-align: left;
+        }
+        .plans {
+            margin-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            justify-content: center;
+        }
+        .plan {
+            flex: 1 1 260px;
+            max-width: 300px;
+            min-width: 260px;
+            border: 2.5px solid var(--gold);
+            border-radius: 20px;
+            padding: 2.2rem 1.5rem 2rem 1.5rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--purple) 60%, var(--accent) 100%);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+            transition: transform 0.3s, box-shadow 0.3s, border 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+        .plan::before {
+            content: '';
+            position: absolute;
+            top: -60px; left: -60px;
+            width: 120px; height: 120px;
+            background: radial-gradient(circle, var(--gold) 0%, transparent 80%);
+            opacity: 0.18;
+            z-index: 0;
+        }
+        .plan:hover {
+            transform: translateY(-12px) scale(1.04);
+            box-shadow: 0 16px 48px var(--gold), 0 8px 32px rgba(0,0,0,0.45);
+            border: 2.5px solid #fff;
+        }
+        .plan h3 {
+            margin: 0.5rem 0 0.7rem 0;
+            color: var(--gold);
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-shadow: 0 0 8px var(--gold);
+        }
+        .plan p {
+            margin: 0.5rem 0;
+            color: #e0e0e0;
+            font-size: 1.1rem;
+        }
+        .plan .price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin: 1.2rem 0 1.5rem 0;
+            text-shadow: 0 0 8px var(--gold);
+        }
+        .plan button {
+            background: linear-gradient(90deg, var(--gold), var(--purple));
+            color: var(--dark);
+            border: none;
+            padding: 0.9rem 2.2rem;
+            border-radius: 14px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 12px var(--gold);
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+            margin-top: 0.5rem;
+        }
+        .plan button:hover {
+            background: linear-gradient(90deg, var(--purple), var(--gold));
+            color: var(--white);
+            transform: scale(1.08);
+        }
+        .plan .badge {
+            position: absolute;
+            top: 18px; right: 18px;
+            background: var(--gold);
+            color: var(--accent);
+            font-weight: 900;
+            font-size: 1rem;
+            padding: 0.3rem 1rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px var(--gold);
+            letter-spacing: 1px;
+        }
+        .faq h3, .socials h3 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            color: var(--gold);
+            text-shadow: 0 0 8px var(--gold);
+        }
+        .faq ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+        .faq ul li {
+            margin-bottom: 1.2rem;
+            background: var(--glass);
+            padding: 1.3rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.18);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .faq ul li:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 24px var(--gold);
+        }
+        .faq strong {
+            color: var(--gold);
+            font-weight: 900;
+        }
+        .socials {
+            text-align: center;
+        }
+        .socials .social-btns {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            background: linear-gradient(90deg, var(--gold), var(--purple));
+            color: var(--dark);
+            border: none;
+            padding: 0.9rem 2.2rem;
+            border-radius: 14px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 12px var(--gold);
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+            text-decoration: none;
+        }
+        .social-btn:hover {
+            background: linear-gradient(90deg, var(--purple), var(--gold));
+            color: var(--white);
+            transform: scale(1.08);
+        }
+        .social-btn svg {
+            width: 1.5em;
+            height: 1.5em;
+            vertical-align: middle;
+        }
+        footer {
+            text-align: center;
+            padding: 2.5rem 0 1.5rem 0;
+            background: linear-gradient(90deg, var(--accent), var(--purple));
+            color: #e0e0e0;
+            margin-top: 2.5rem;
+            font-size: 1rem;
+            box-shadow: 0 -4px 18px rgba(0,0,0,0.25);
+            border-top: 3px solid var(--gold);
+        }
+        footer a {
+            color: var(--gold);
+            text-decoration: underline;
+        }
+        @media (max-width: 900px) {
+            .plans {
+                flex-direction: column;
+                align-items: center;
+            }
+            .plan {
+                max-width: 90vw;
+            }
+            .hero {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+        @media (max-width: 600px) {
+            header {
+                font-size: 2.2rem;
+                padding: 1.2rem 0;
+            }
+            .container {
+                padding: 1.2rem 0.5rem;
+            }
+            .plan {
+                padding: 1.2rem 0.7rem 1.2rem 0.7rem;
+            }
+            .hero-img img {
+                width: 90vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://static.wikia.nocookie.net/minecraft_gamepedia/images/c/c0/Make_Stuff_icon_%28MCE%29.png/revision/latest/scale-to-width-down/100?cb=20240727094804" alt="Minecraft Grass Block">
+            FAJNEHOSTING
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#" class="active">Domů</a></li>
+            <li><a href="#">Plány</a></li>
+            <li><a href="#">Kontakty</a></li>
+        </ul>
+    </nav>
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Prémiový Minecraft Hosting</h1>
+            <p>Zažijte výkon, stabilitu a podporu na úrovni světové špičky. <br>
+            <strong>99.99% uptime, DDoS ochrana, okamžitá aktivace, 24/7 podpora.</strong></p>
+            <button class="cta" onclick="window.scrollTo({top: document.querySelector('.plans').offsetTop-80, behavior:'smooth'})">Vybrat plán</button>
+        </div>
+        <div class="hero-img">
+            <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/892970/header.jpg" alt="Minecraft Server Hosting">
+        </div>
+    </section>
+    <section class="container why-us">
+        <h2 style="color:var(--gold);font-size:2rem;text-shadow:0 0 8px var(--gold);">Proč si nás vybrat?</h2>
+        <div class="why-us-content">
+            <img src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c2f1.png" alt="Rychlý a spolehlivý hosting" class="why-us-image">
+            <div class="why-us-text">
+                <ul style="list-style: disc; margin-left: 1.5rem;">
+                    <li><b>Nejrychlejší hardware</b> – AMD Ryzen, NVMe SSD, 10Gbps síť</li>
+                    <li><b>Automatické zálohy</b> – vaše data jsou vždy v bezpečí</li>
+                    <li><b>Okamžitá aktivace</b> – server běží do 60 sekund</li>
+                    <li><b>24/7 podpora</b> – skuteční hráči, kteří rozumí Minecraftu</li>
+                    <li><b>Moderní panel</b> – spravujte server jednoduše z mobilu i PC</li>
+                    <li><b>DDoS ochrana</b> – vaše komunita je v bezpečí</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section class="container plans">
+        <h2 style="text-align: center; width: 100%; color:var(--gold);font-size:2rem;text-shadow:0 0 8px var(--gold);margin-bottom:2rem;">Vyberte si svůj plán</h2>
+        <div class="plan">
+            <span class="badge">START</span>
+            <h3>2GB RAM</h3>
+            <p>Perfektní pro malé servery, přátelé a začátečníky.</p>
+            <div class="price">5&nbsp;$/měsíc</div>
+            <button>Objednat</button>
+        </div>
+        <div class="plan">
+            <span class="badge">POPULAR</span>
+            <h3>4GB RAM</h3>
+            <p>Skvělé pro střední servery a menší komunity.</p>
+            <div class="price">10&nbsp;$/měsíc</div>
+            <button>Objednat</button>
+        </div>
+        <div class="plan">
+            <span class="badge">PRO</span>
+            <h3>6GB RAM</h3>
+            <p>Ideální pro větší servery, pluginy a modpacky.</p>
+            <div class="price">15&nbsp;$/měsíc</div>
+            <button>Objednat</button>
+        </div>
+        <div class="plan">
+            <span class="badge">ULTRA</span>
+            <h3>8GB RAM</h3>
+            <p>Nejlepší pro velké komunity a náročné projekty.</p>
+            <div class="price">20&nbsp;$/měsíc</div>
+            <button>Objednat</button>
+        </div>
+    </section>
+    <section class="container faq">
+        <h3>Často kladené otázky</h3>
+        <ul>
+            <li>
+                <strong>Jak rychle bude můj server aktivní?</strong>
+                <p>Váš server bude aktivní během několika sekund po objednávce – vše je plně automatizované.</p>
+            </li>
+            <li>
+                <strong>Mohu svůj plán kdykoliv změnit?</strong>
+                <p>Ano, můžete svůj plán kdykoliv upgradovat nebo downgradovat v klientské sekci.</p>
+            </li>
+            <li>
+                <strong>Poskytujete zálohování?</strong>
+                <p>Ano, všechny servery jsou automaticky zálohovány každý den.</p>
+            </li>
+            <li>
+                <strong>Je server chráněn proti DDoS útokům?</strong>
+                <p>Ano, všechny servery mají pokročilou DDoS ochranu zdarma.</p>
+            </li>
+            <li>
+                <strong>Jak mohu kontaktovat podporu?</strong>
+                <p>Podpora je dostupná 24/7 přes Discord, e-mail i live chat v klientské sekci.</p>
+            </li>
+        </ul>
+    </section>
+    <section class="container socials">
+        <h3>Sledujte nás</h3>
+        <div class="social-btns">
+            <a class="social-btn" href="https://discord.com/GS3hwaCYsF" target="_blank" rel="noopener">
+                <svg fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.369a19.791 19.791 0 00-4.885-1.515.07.07 0 00-.073.035c-.211.375-.444.864-.608 1.249-1.844-.276-3.68-.276-5.486 0-.164-.393-.405-.874-.617-1.249a.07.07 0 00-.073-.035c-1.67.285-3.282.822-4.885 1.515a.064.064 0 00-.032.027C.533 9.045-.32 13.579.099 18.057a.08.08 0 00.031.056c2.052 1.507 4.041 2.422 5.992 3.029a.077.077 0 00.084-.027c.461-.63.873-1.295 1.226-1.994a.076.076 0 00-.041-.104c-.652-.247-1.27-.549-1.872-.892a.077.077 0 01-.008-.127c.126-.094.252-.192.371-.291a.074.074 0 01.077-.01c3.927 1.793 8.18 1.793 12.061 0a.073.073 0 01.078.009c.119.099.245.198.372.292a.077.077 0 01-.006.127 12.298 12.298 0 01-1.873.891.076.076 0 00-.04.105c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028c1.961-.607 3.95-1.522 5.993-3.029a.077.077 0 00.03-.055c.5-5.177-.838-9.673-3.548-13.661a.061.061 0 00-.031-.028zM8.02 15.331c-1.183 0-2.156-1.085-2.156-2.419 0-1.333.955-2.418 2.156-2.418 1.21 0 2.175 1.094 2.156 2.418 0 1.334-.955 2.419-2.156 2.419zm7.974 0c-1.183 0-2.156-1.085-2.156-2.419 0-1.333.955-2.418 2.156-2.418 1.21 0 2.175 1.094 2.156 2.418 0 1.334-.946 2.419-2.156 2.419Z"/></svg>
+                Discord
+            </a>
+            <a class="social-btn" href="https://instagram.com/michalbrashko" target="_blank" rel="noopener">
+                <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.974.974 1.246 2.241 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.974.974-2.241 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.974-.974-1.246-2.241-1.308-3.608C2.175 15.647 2.163 15.267 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608.974-.974 2.241-1.246 3.608-1.308C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.013 7.052.072 5.771.131 4.659.414 3.678 1.395c-.98.98-1.263 2.092-1.322 3.373C2.013 5.668 2 6.077 2 12c0 5.923.013 6.332.072 7.612.059 1.281.342 2.393 1.322 3.373.98.98 2.092 1.263 3.373 1.322C8.332 23.987 8.741 24 12 24s3.668-.013 4.948-.072c1.281-.059 2.393-.342 3.373-1.322.98-.98 1.263-2.092 1.322-3.373.059-1.28.072-1.689.072-7.612 0-5.923-.013-6.332-.072-7.612-.059-1.281-.342-2.393-1.322-3.373-.98-.98-2.092-1.263-3.373-1.322C15.668.013 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+                Instagram
+            </a>
+        </div>
+    </section>
+    <footer>
+        <address>
+            Kontaktujte nás: <a href="mailto:minecraft@hosting.com">minecraft@hosting.com</a><br>
+            Adresa: 123 Minecraft Lane, Block City
+        </address>
+        <p>&copy; 2024 FAJNEHOSTING – Minecraft Hosting. Všechna práva vyhrazena.</p>
+    </footer>
+</body>
+</html>
